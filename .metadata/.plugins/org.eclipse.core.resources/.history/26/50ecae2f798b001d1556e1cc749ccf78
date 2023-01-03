@@ -1,0 +1,25 @@
+package com.agenda.contactos.controlador;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.agenda.contactos.modelo.Contacto;
+
+@Controller
+public class ContactoController {
+	
+	@GetMapping({"/",""})
+	public String verPaginaInicio() {
+		return "index";
+	}
+	
+	@GetMapping("/nuevo")
+	public String mostrarFormulario(Model model) {
+		model.addAttribute("contacto", new Contacto());
+		return "nuevo";
+	}
+	
+	
+
+}

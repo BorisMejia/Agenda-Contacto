@@ -1,0 +1,5 @@
+package com.agenda.contactos.controlador;
+
+public class ContactoController {
+
+}

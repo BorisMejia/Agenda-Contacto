@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Contactos</title>
+</head>
+<body>
+    
+    <h3>Registro Contactos</h3>
+    <form action="" method="post" th:object=${contacto}>
+        <div>
+            <label for="nombre">Nombre: </label>
+            <input id="nombre" type="text" placeholder="Degite el nombre" th:field="*{nombre}">
+        </div>
+        <div>
+            <label for="celular">Celular: </label>
+            <input id="celular" type="text" placeholder="Degite el Celular" th:field="*{celular}">
+        </div>
+        <div>
+            <label for="email">Email: </label>
+            <input id="email" type="email" placeholder="Degite el Email" th:field="*{email}">
+        </div>
+        <div>
+            <label for="fechaNacimiento">Fecha nacimiento: </label>
+            <input id="fechaNacimiento" type="date" th:field="*{fechaNacimiento}">
+        </div> 
+        <button>
+            Guardar
+        </button>
+        <a href="/">Cancelar</a>
+    </form>
+    
+</body>
+</html>
