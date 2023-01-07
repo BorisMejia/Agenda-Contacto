@@ -7,7 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.PrePersist;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 public class Contacto {
@@ -16,12 +24,19 @@ public class Contacto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotBlank(message = "Debe ingresar el nombre")
 	private String nombre;
 
+	@NotEmpty(message = "Debe ingresar un Email")
+	@Email
 	private String email;
 
-	private Integer celular;
-
+	@NotBlank(message = "Debe ingresar un numero telefonico")
+	private String celular;
+	
+	@DateTimeFormat(iso = ISO.DATE)
+	@Past
+	@NotNull(message = "Debe ingresar una fecha de nacimiento")
 	private LocalDate fechaNacimiento;
 
 	private LocalDateTime fechaRegistro;
@@ -50,11 +65,11 @@ public class Contacto {
 		this.email = email;
 	}
 
-	public Integer getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(Integer celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
@@ -74,7 +89,12 @@ public class Contacto {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public Contacto(Integer id, String nombre, String email, Integer celular, LocalDate fechaNacimiento,
+	@PrePersist
+	public void asignarFechaRegistro() {
+		fechaRegistro = LocalDateTime.now();
+	}
+	
+	public Contacto(Integer id, String nombre, String email, String celular, LocalDate fechaNacimiento,
 			LocalDateTime fechaRegistro) {
 		super();
 		this.id = id;

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de contactos</title>
+</head>
+<body>
+
+    <div th:if="${msgExito != null}">
+        [[${msgExito}]]
+    </div>
+    
+    <h1>Lista de contactos</h1> 
+    <a href="/nuevo">Añadir Contacto</a>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Celular</th>
+                <th>Email</th>
+                <th>Fecha Nacimiento</th>
+                <th>Fecha Registro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="contacto : ${contactos}" th:object="${contacto}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{nombre}"></td>
+                <td th:text="*{celular}"></td>
+                <td th:text="*{email}"></th>
+                <td th:text="*{fechaNacimiento}"></td>
+                <td th:text="*{fechaRegistro}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
